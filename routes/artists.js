@@ -32,13 +32,13 @@ router.post('/signup', (req, res) => {
 
         switch (req.body.event) {
             case 'weedings':
-                eventID = "63974244c4543aec0e8a2681"
+                eventID = "6398905c9f4bbb28feb35ec2"
                 break;
             case 'privateEvents':
-                eventID = "63974b4aca18ba79d6e9f3f0"
+                eventID = "639890819f4bbb28feb35ec4"
                 break;
             case 'courses':
-                eventID = "63974b17ca18ba79d6e9f3ef"
+                eventID = "639890969f4bbb28feb35ec6"
                 break;
             default:
                 break;
