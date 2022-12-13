@@ -7,16 +7,6 @@ const uid2 = require('uid2');
 const bcrypt = require('bcrypt');
 const { checkBody } = require('../modules/checkBody');
 
-// get artist
-router.get('/', (req, res) => {
-    Artist.find()
-    .populate('event')
-    .then(data => {
-        res.json({ artistsData : data});
-    });
-});
-
-
 //SIGNUP
 router.post('/signup', (req, res) => {
     if (!checkBody(req.body, ['type', 'email', 'username', 'password', 'description'])) {
@@ -79,5 +69,34 @@ router.post('/signup', (req, res) => {
       }
     });
   });
+
+
+// SIGNIN
+router.post('/signin', (req, res) => {
+  if (!checkBody(req.body, ['email', 'password'])) {
+    res.json({ result: false, error: 'Missing or empty fields' });
+    return;
+  }
+
+  Artist.findOne({ email: req.body.email }).then(data => {
+    if (data && bcrypt.compareSync(req.body.password, data.password)) {
+      res.json({ result: true, token: data.token, username: data.username, type: data.type });
+    } else {
+      res.json({ result: false, error: 'User not found or wrong password', message: "Identifiants incorrectes" });
+    }
+  });
+});
+
+
+  // GET INFO ALL ARTISTS
+router.get('/', (req, res) => {
+  Artist.find()
+  .populate('event')
+  .then(data => {
+      res.json({ artistsData : data});
+  });
+});
+
+
 
 module.exports = router;
