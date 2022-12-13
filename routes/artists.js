@@ -31,7 +31,7 @@ router.post('/signup', (req, res) => {
         let eventID;
 
         switch (req.body.event) {
-            case 'weedings':
+            case 'weddings':
                 eventID = "6398905c9f4bbb28feb35ec2"
                 break;
             case 'privateEvents':
