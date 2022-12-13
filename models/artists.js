@@ -18,7 +18,12 @@ const artistSchema = mongoose.Schema({
     hourly: Number,
     packages: [Number],
   },
-  type: Number,
+  type: String,
+  instrument: [String],
+  formatPhoto: String,
+  camera: String,
+  links: [String],
+  styles: [String],
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'events' }],
 });
 
