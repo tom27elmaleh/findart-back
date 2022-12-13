@@ -1,4 +1,5 @@
-module.exports = router;
+var express = require('express');
+var router = express.Router();
 require('../models/connection');
 
 const Artist = require('../models/artists');
@@ -8,24 +9,9 @@ const { checkBody } = require('../modules/checkBody');
 
 // get artist
 router.get('/', (req, res) => {
-    Artist.find().then(data => {
-        let type = '';
-        switch (data.type) {
-            case 1:
-                type = 'Musique'
-                break;
-            case 2:
-                type = 'Danse'
-                break;
-            case 3:
-                type = 'Photographie'
-                break;
-            case 4:
-                type = 'Design'
-                break;
-            default: 'Autre catégorie'
-                break;
-        }
+    Artist.find()
+    .populate('event')
+    .then(data => {
         res.json({ artistsData : data});
     });
 });

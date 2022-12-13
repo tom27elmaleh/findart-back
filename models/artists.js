@@ -26,7 +26,7 @@ const artistSchema = mongoose.Schema({
   formatPhoto: String,
   camera: String,
   link: String,
-  styles: String,
+  style: String,
   event: { type: mongoose.Schema.Types.ObjectId, ref: 'events' },
 });
 
