@@ -20,7 +20,7 @@ const artistSchema = mongoose.Schema({
   photo: String, 
   description: String,
   insta: String,
-  addresse: addressSchema,
+  address: addressSchema,
   rate: ratesSchema,
   instrument: String,
   formatPhoto: String,

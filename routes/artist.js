@@ -40,7 +40,7 @@ router.post('/signup', (req, res) => {
           email: req.body.email,
           username: req.body.username,
           password: hash,
-          photo: String,
+          photo: req.body.photo,
           description: req.body.description,
           insta: req.body.insta,
           address: {
