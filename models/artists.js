@@ -1,25 +1,33 @@
 const mongoose = require('mongoose');
 
+const addressSchema = mongoose.Schema({
+  city: String,
+  postalCode: String,
+  country: String,
+});
+
+const ratesSchema = mongoose.Schema({
+  hourly: Number,
+  package: Number,
+});
+
 const artistSchema = mongoose.Schema({
   token: String,
+  type: String,
   email: String,
   username: String,
   password: String,
-  availabilities: [Date],
   photo: String, 
   description: String,
   insta: String,
-  address: {
-    city: String,
-    postalCode: String,
-    street: String,
-  },
-  rates: {
-    hourly: Number,
-    packages: [Number],
-  },
-  type: Number,
-  events: [{ type: mongoose.Schema.Types.ObjectId, ref: 'events' }],
+  address: addressSchema,
+  rate: ratesSchema,
+  instrument: String,
+  formatPhoto: String,
+  camera: String,
+  link: String,
+  styles: String,
+  event: { type: mongoose.Schema.Types.ObjectId, ref: 'events' },
 });
 
 const Artist = mongoose.model('artists', artistSchema);
