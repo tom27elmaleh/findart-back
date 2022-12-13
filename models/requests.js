@@ -1,17 +1,21 @@
 const mongoose = require('mongoose');
 
+const addressSchema = mongoose.Schema({
+  city: String,
+  postalCode: String,
+  country: String,
+});
+
+const userSchema = mongoose.Schema({
+  email: String,
+  firstname: String,
+  lastname: String,
+});
+
 const requestSchema = mongoose.Schema({
   text: String,
-  user: {
-    email: String,
-    firstname: String,
-    lastname: String,
-  },
-  address: {
-    postalCode: String,
-    city: String,
-    street: String,
-  },
+  user: userSchema,
+  address: addressSchema,
   artist: { type: mongoose.Schema.Types.ObjectId, ref: 'artists' },
 });
 
