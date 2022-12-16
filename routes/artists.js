@@ -88,13 +88,44 @@ router.post('/signin', (req, res) => {
 });
 
 
-  // GET INFO ALL ARTISTS
+  // Tous les artistes - Explorer
 router.get('/', (req, res) => {
   Artist.find()
   .populate('event')
   .then(data => {
       res.json({ artistsData : data});
   });
+});
+
+// Uniquement les artistes ayant le type "musique"
+router.get('/music', (req, res) => {
+  Artist.find({type: 'Musique'}).then(data => {
+    res.json({ musiciansData : data })
+  })
+});
+
+// Uniquement les artistes ayant le type "danse"
+router.get('/danse', (req, res) => {
+  Artist.find({type: "Dance"}).then(data => {
+    // console.log(data);
+    res.json({ dancersData : data })
+  })
+});
+
+// Uniquement les artistes ayant le type design
+router.get('/design', (req, res) => {
+  Artist.find({type: "Design"}).then(data => {
+    // console.log(data);
+    res.json({ designersData : data })
+  })
+});
+
+// Uniquement les artist ayant le type design
+router.get('/photo', (req, res) => {
+  Artist.find({type: "Photo"}).then(data => {
+    // console.log(data);
+    res.json({ photographsData : data })
+  })
 });
 
 
