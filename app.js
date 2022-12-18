@@ -9,6 +9,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var eventsRouter = require("./routes/events");
 var artistsRouter = require("./routes/artists");
+var requestsRouter = require("./routes/requests");
 
 var app = express();
 
@@ -25,5 +26,6 @@ app.use("/", indexRouter);
 app.use("/events", eventsRouter);
 app.use("/", eventsRouter);
 app.use("/artists", artistsRouter);
+app.use("/requests", requestsRouter);
 
 module.exports = app;
