@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const addressSchema = mongoose.Schema({
   city: String,
@@ -16,9 +16,9 @@ const requestSchema = mongoose.Schema({
   text: String,
   user: userSchema,
   address: addressSchema,
-  artist: { type: mongoose.Schema.Types.ObjectId, ref: 'artists' },
+  artist: { type: mongoose.Schema.Types.ObjectId, ref: "artists" },
 });
 
-const Request = mongoose.model('requests', requestSchema);
+const Request = mongoose.model("requests", requestSchema);
 
 module.exports = Request;

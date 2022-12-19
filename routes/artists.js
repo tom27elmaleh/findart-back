@@ -6,7 +6,7 @@ const Artist = require("../models/artists");
 const uid2 = require("uid2");
 const bcrypt = require("bcrypt");
 const { checkBody } = require("../modules/checkBody");
-const Event = require("../models/events")
+const Event = require("../models/events");
 
 //SIGNUP
 router.post("/signup", (req, res) => {
@@ -121,42 +121,29 @@ router.get("/", (req, res) => {
 
 // GET EVENT WEDDING
 router.get("/mariage", (req, res) => {
-  Event.findOne({name: "Mariage"}).then((data) => {
-     Artist.find({ event: data._id })
-     .then((data1) => {
+  Event.findOne({ name: "Mariage" }).then((data) => {
+    Artist.find({ event: data._id }).then((data1) => {
       res.json({ artistsData: data1 });
     });
-  })
-
-
+  });
 });
-
-
 
 // GET EVENT PRIVY EVENT
 router.get("/privy", (req, res) => {
-  
-  Event.findOne({name: "Evènement privés"}).then((data) => {
-     Artist.find({ event: data._id })
-     .then((data1) => {
+  Event.findOne({ name: "Evènement privés" }).then((data) => {
+    Artist.find({ event: data._id }).then((data1) => {
       res.json({ artistsData: data1 });
     });
-  })
-
-
+  });
 });
-
-
 
 // GET EVENT COURS
 router.get("/cours", (req, res) => {
-  Event.findOne({name: "Cours"}).then((data) => {
-  Artist.find({ event:data._id })
-  
-    .then((data1) => {
+  Event.findOne({ name: "Cours" }).then((data) => {
+    Artist.find({ event: data._id }).then((data1) => {
       res.json({ artistsData: data1 });
     });
-  })
+  });
 });
 
 module.exports = router;

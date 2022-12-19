@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const addressSchema = mongoose.Schema({
   city: String,
@@ -17,7 +17,7 @@ const artistSchema = mongoose.Schema({
   email: String,
   username: String,
   password: String,
-  photo: String, 
+  photo: String,
   description: String,
   insta: String,
   address: addressSchema,
@@ -27,9 +27,9 @@ const artistSchema = mongoose.Schema({
   camera: String,
   link: String,
   style: String,
-  event: { type: mongoose.Schema.Types.ObjectId, ref: 'events' },
+  event: { type: mongoose.Schema.Types.ObjectId, ref: "events" },
 });
 
-const Artist = mongoose.model('artists', artistSchema);
+const Artist = mongoose.model("artists", artistSchema);
 
 module.exports = Artist;

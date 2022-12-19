@@ -14,7 +14,7 @@ router.post("/add", function (req, res) {
 
 router.get("/events", (req, res) => {
   Event.find().then((data) => {
-    res.json({allEvent:data });
+    res.json({ allEvent: data });
   });
 });
 
