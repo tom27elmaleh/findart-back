@@ -120,7 +120,7 @@ router.get('/design', (req, res) => {
   })
 });
 
-// Uniquement les artist ayant le type design
+// Uniquement les artist ayant le type photo
 router.get('/photo', (req, res) => {
   Artist.find({type: "Photo"}).then(data => {
     // console.log(data);
