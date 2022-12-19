@@ -12,13 +12,10 @@ router.post("/add", function (req, res) {
   newEvent.save().then(res.json({ result: true, message: "event add" }));
 });
 
-router.get("/", (req, res) => {
+router.get("/events", (req, res) => {
   Event.find().then((data) => {
-    res.json({ allEvent: data });
+    res.json({allEvent:data });
   });
 });
-
-
-
 
 module.exports = router;
