@@ -20,10 +20,12 @@ router.post("/sendRequest", (req, res) => {
       email: req.body.email,
     },
     address: {
+      street: req.body.street,
       postalCode: req.body.postalCode,
       city: req.body.city,
     },
     text: req.body.text,
+    dateEvent: new Date(req.body.date),
     artist: req.body.artist,
   });
   newRequest.save().then((newDoc) => {

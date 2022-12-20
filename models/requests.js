@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const addressSchema = mongoose.Schema({
+  street: String,
   city: String,
   postalCode: String,
   country: String,
@@ -17,6 +18,8 @@ const requestSchema = mongoose.Schema({
   user: userSchema,
   address: addressSchema,
   artist: { type: mongoose.Schema.Types.ObjectId, ref: "artists" },
+  dateEvent: Date,
+
 });
 
 const Request = mongoose.model("requests", requestSchema);
