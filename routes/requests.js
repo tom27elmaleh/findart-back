@@ -31,4 +31,14 @@ router.post("/sendRequest", (req, res) => {
   });
 });
 
+router.post("/messages", (req, res) => {
+  Request.find({ artist: req.body.id_artist }).then((data) => {
+    res.json({ messageData: data });
+  });
+});
+
+
+
+
+
 module.exports = router;
