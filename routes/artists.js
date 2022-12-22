@@ -59,7 +59,7 @@ router.post("/signup", (req, res) => {
         address: {
           city: req.body.city,
           postalCode: req.body.postalCode,
-          country: req.body.county,
+          country: req.body.country,
         },
         rate: {
           hourly: req.body.hourly,
@@ -102,6 +102,7 @@ router.post("/signin", (req, res) => {
         token: data.token,
         username: data.username,
         type: data.type,
+        id: data._id,
       });
     } else {
       res.json({
@@ -115,17 +116,21 @@ router.post("/signin", (req, res) => {
 
 // GET TOUS LES ARTISTES
 router.get("/", (req, res) => {
-  Artist.find().populate("event").then((data) => {
-    res.json({ artistsData: data });
-  });
+  Artist.find()
+    .populate("event")
+    .then((data) => {
+      res.json({ artistsData: data });
+    });
 });
 
 // GET EVENT WEDDING
 router.get("/mariage", (req, res) => {
   Event.findOne({ name: "Mariage" }).then((data) => {
-    Artist.find({ event: data._id }).populate("event").then((data1) => {
-      res.json({ artistsData: data1 });
-    });
+    Artist.find({ event: data._id })
+      .populate("event")
+      .then((data1) => {
+        res.json({ artistsData: data1 });
+      });
   });
 });
 
@@ -141,43 +146,63 @@ router.get("/privy", (req, res) => {
 // GET EVENT COURS
 router.get("/cours", (req, res) => {
   Event.findOne({ name: "Cours" }).then((data) => {
-    Artist.find({ event: data._id }).populate("event").then((data1) => {
-      res.json({ artistsData: data1 });
-    });
+    Artist.find({ event: data._id })
+      .populate("event")
+      .then((data1) => {
+        res.json({ artistsData: data1 });
+      });
   });
 });
 
 // Uniquement les artistes ayant le type "musique"
 router.get("/music", (req, res) => {
-  Artist.find({ type: "Musique" }).populate("event").then((data) => {
-    res.json({ musiciansData: data });
-  });
+  Artist.find({ type: "Musique" })
+    .populate("event")
+    .then((data) => {
+      res.json({ musiciansData: data });
+    });
 });
 // Uniquement les artistes ayant le type "danse"
 router.get("/danse", (req, res) => {
-  Artist.find({ type: "Dance" }).populate("event").then((data) => {
-    // console.log(data);
-    res.json({ dancersData: data });
-  });
+  Artist.find({ type: "Dance" })
+    .populate("event")
+    .then((data) => {
+      // console.log(data);
+      res.json({ dancersData: data });
+    });
 });
 // Uniquement les artistes ayant le type design
 router.get("/design", (req, res) => {
-  Artist.find({ type: "Design" }).populate("event").then((data) => {
-    // console.log(data);
-    res.json({ designersData: data });
-  });
+  Artist.find({ type: "Design" })
+    .populate("event")
+    .then((data) => {
+      // console.log(data);
+      res.json({ designersData: data });
+    });
 });
 // Uniquement les artist ayant le type photo
 router.get("/photo", (req, res) => {
-  Artist.find({ type: "Photo" }).populate("event").then((data) => {
-    // console.log(data);
-    res.json({ photographsData: data });
-  });
+  Artist.find({ type: "Photo" })
+    .populate("event")
+    .then((data) => {
+      // console.log(data);
+      res.json({ photographsData: data });
+    });
 });
 
 //GET ONE ARTIST
 router.get("/:token", (req, res) => {
   Artist.findOne({ token: req.params.token }).then((data) => {
+    if (data) {
+      res.json({ result: true, artist: data });
+    } else {
+      res.json({ result: false, error: "Artist not found" });
+    }
+  });
+});
+
+router.get("/username/:username", (req, res) => {
+  Artist.findOne({ username: req.params.username }).then((data) => {
     if (data) {
       res.json({ result: true, artist: data });
     } else {
