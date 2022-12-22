@@ -102,6 +102,7 @@ router.post("/signin", (req, res) => {
         token: data.token,
         username: data.username,
         type: data.type,
+        id: data._id,
       });
     } else {
       res.json({
@@ -194,6 +195,16 @@ router.get("/photo", (req, res) => {
 //GET ONE ARTIST
 router.get("/:token", (req, res) => {
   Artist.findOne({ token: req.params.token }).then((data) => {
+    if (data) {
+      res.json({ result: true, artist: data });
+    } else {
+      res.json({ result: false, error: "Artist not found" });
+    }
+  });
+});
+
+router.get("/username/:username", (req, res) => {
+  Artist.findOne({ username: req.params.username }).then((data) => {
     if (data) {
       res.json({ result: true, artist: data });
     } else {
