@@ -131,7 +131,7 @@ router.get("/mariage", (req, res) => {
 
 // GET EVENT PRIVY EVENT
 router.get("/privy", (req, res) => {
-  Event.findOne({ name: "Evènement privés" }).then((data) => {
+  Event.findOne({ name: "Evenement privé" }).then((data) => {
     Artist.find({ event: data._id }).populate("event").then((data1) => {
       res.json({ artistsData: data1 });
     });
